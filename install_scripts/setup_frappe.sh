@@ -145,8 +145,8 @@ add_debian_mariadb_repo() {
 
 add_ius_repo() {
 	if [ $OS_VER -eq "6" ]; then
-	wget http://dl.iuscommunity.org/pub/ius/stable/CentOS/$OS_VER/$T_ARCH/epel-release-6-5.noarch.rpm
-	wget http://dl.iuscommunity.org/pub/ius/stable/CentOS/$OS_VER/$T_ARCH/ius-release-1.0-14.ius.centos6.noarch.rpm
+	wget -nc http://dl.iuscommunity.org/pub/ius/stable/CentOS/$OS_VER/$T_ARCH/epel-release-6-5.noarch.rpm
+	wget -nc http://dl.iuscommunity.org/pub/ius/stable/CentOS/$OS_VER/$T_ARCH/ius-release-1.0-14.ius.centos6.noarch.rpm
 	rpm --quiet -q epel-release || rpm -Uvh epel-release-6-5.noarch.rpm
 	rpm --quiet -q ius-release || rpm -Uvh ius-release-1.0-14.ius.centos6.noarch.rpm
 	fi
@@ -240,7 +240,7 @@ install_wkhtmltopdf_centos () {
 		return 0
 	fi
 	RPM="wkhtmltox-0.12.2.1_linux-$OS$OS_VER-$WK_ARCH.rpm"
-	run_cmd wget http://download.gna.org/wkhtmltopdf/0.12/0.12.2.1/$RPM
+	run_cmd wget -nc http://download.gna.org/wkhtmltopdf/0.12/0.12.2.1/$RPM
 	rpm --quiet -q wkhtmltox || run_cmd rpm -Uvh $RPM
 }
 
@@ -257,7 +257,7 @@ install_wkhtmltopdf_deb () {
 		WK_VER="jessie"
 	fi
 
-	run_cmd wget http://download.gna.org/wkhtmltopdf/0.12/0.12.2.1/wkhtmltox-0.12.2.1_linux-$WK_VER-$WK_ARCH.deb
+	run_cmd wget -nc http://download.gna.org/wkhtmltopdf/0.12/0.12.2.1/wkhtmltox-0.12.2.1_linux-$WK_VER-$WK_ARCH.deb
 	run_cmd dpkg -i wkhtmltox-0.12.2.1_linux-$WK_VER-$WK_ARCH.deb
 }
 
